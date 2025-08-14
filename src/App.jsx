@@ -18,7 +18,7 @@ function App() {
 
   async function reviewCode() {
     const response = await axios.post(
-      "https://ai-reviewer-backend.vercel.app/ai/get-review",
+      "https://ai-reviewer-backend-yxmr.onrender.com/ai/get-review",
       {
         code,
       }
