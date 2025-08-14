@@ -11,20 +11,24 @@ import "highlight.js/styles/github-dark.css";
 function App() {
   const [code, setCode] = useState("function sum(){return 1+2}");
   const [review, setReview] = useState("");
+  const [loading, setLoading] = useState(false); // ✅ added
 
   useEffect(() => {
     Prism.highlightAll();
   });
 
   async function reviewCode() {
-    const response = await axios.post(
-      "https://ai-reviewer-backend-yxmr.onrender.com/ai/get-review",
-      {
-        code,
-      }
-    );
-
-    setReview(response.data);
+    setLoading(true); // ✅ start loading
+    try {
+      const response = await axios.post(
+        "https://ai-reviewer-backend-yxmr.onrender.com/ai/get-review",
+        { code }
+      );
+      setReview(response.data);
+    } catch (error) {
+      setReview("Error fetching review");
+    }
+    setLoading(false); // ✅ stop loading
   }
 
   return (
@@ -50,13 +54,20 @@ function App() {
             />
           </div>
           <div className="review" onClick={reviewCode}>
-            Review
+            {loading ? <div className="spinner"></div> : "Review"}{" "}
+            {/* ✅ spinner */}
           </div>
         </div>
         <div className="right">
-          <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
-            {review}
-          </ReactMarkdown>
+          {loading ? (
+            <div className="loader-container">
+              <div className="spinner large"></div>
+            </div> // ✅ bigger spinner in preview
+          ) : (
+            <ReactMarkdown rehypePlugins={[rehypeHighlight]}>
+              {review}
+            </ReactMarkdown>
+          )}
         </div>
       </main>
     </>
