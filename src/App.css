@@ -10,17 +10,17 @@ html,body,
   height:100%;
 }
 
-main{
-  height: 100%;
-  width: 100%;
-  padding: 1.5rem;
+main {
   display: flex;
-  gap: 1rem;
+  height: 100vh;
 }
-main .left, main .right{
+
+.left, .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
   height: 100%;
-  flex-basis: 50%;
-  border-radius: 0.7rem;
 }
 
 main .left{
@@ -28,6 +28,30 @@ main .left{
   position: relative;
 
 }
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  body, main, .left, .right, .code, .review {
+    margin:0;
+    padding: 0 ;
+    box-sizing: border-box;
+  }
+  main {
+    flex-direction: column;
+    height: 100vh;
+  }
+  .left, .right {
+    width: 100%;
+    height: 50vh;
+    min-height: 0;
+  }
+  .code {
+    height: 100%;
+  }
+  .review {
+    height: auto;
+  }
+}
+
 .left .code,
 .code pre ,
 .code pre code {
