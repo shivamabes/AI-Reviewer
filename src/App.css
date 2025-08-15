@@ -10,17 +10,17 @@ html,body,
   height:100%;
 }
 
-main {
-  display: flex;
-  height: 100vh;
-}
-
-.left, .right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
+main{
   height: 100%;
+  width: 100%;
+  padding: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}
+main .left, main .right{
+  height: 100%;
+  flex-basis: 50%;
+  border-radius: 0.7rem;
 }
 
 main .left{
@@ -28,30 +28,6 @@ main .left{
   position: relative;
 
 }
-/* Responsive for mobile */
-@media (max-width: 768px) {
-  body, main, .left, .right, .code, .review {
-    margin:0;
-    padding: 0 ;
-    box-sizing: border-box;
-  }
-  main {
-    flex-direction: column;
-    height: 100vh;
-  }
-  .left, .right {
-    width: 100%;
-    height: 50vh;
-    min-height: 0;
-  }
-  .code {
-    height: 100%;
-  }
-  .review {
-    height: auto;
-  }
-}
-
 .left .code,
 .code pre ,
 .code pre code {
@@ -112,4 +88,79 @@ main .right{
     transform: rotate(360deg);
   }
 }
+/* ...existing code... */
 
+/* ...existing code... */
+
+@media (max-width: 768px) {
+  html, body, #root, main {
+    width: 100%;
+    height: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+  }
+  main {
+    flex-direction: column;
+    gap: 0.5rem;
+    height: 100vh;
+    padding: 0 !important;
+  }
+  main .left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    width: 100%;
+    height: 50vh;
+    min-height: 0;
+    border-radius: 0.7rem;
+    overflow: auto;
+    padding: 0 !important;
+    margin: 0 !important;
+    background-color: #000000;
+    position: relative;
+  }
+  .left .code {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    border-radius: 0.7rem;
+    background-color: #000000;
+  }
+  main .left .review {
+    position: relative;
+    width: 100%;
+    margin-top: 0.5rem;
+    bottom: unset;
+    right: unset;
+    border-radius: 0.7rem;
+    text-align: center;
+    align-self: flex-end;
+  }
+  main .right {
+    width: 100%;
+    height: 50vh;
+    min-height: 0;
+    border-radius: 0.7rem;
+    overflow-y: auto;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+    margin: 0 !important;
+  }
+  main .right pre,
+  main .right img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  .loader-container {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+/* ...existing code... */
+/* ...existing code... */
